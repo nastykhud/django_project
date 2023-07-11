@@ -45,7 +45,7 @@ def item_info(request, num):
         Наименование: <strong>{items[ids.index(num)]['name']}</strong> <br>
         Количество: <strong>{items[ids.index(num)]['quantity']}</strong> <br>"""
     else: #если нужный id не в списке
-        text = f"""Товар с id = {num} не найден"""
+        text = f"""Товар с id = {num} не найден <br>"""
     
     #Гиперссылка на список товаров
     text += """<a href = "/items">Назад к списку товаров</a>"""

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка товара</title>
+    
+</head>
+<body>
+    <a href = "/"> Главная </a> - <a href = "/items"> Список товаров </a> - <a href = "/item/{{ item.id }}">{{ item.id }}</a> <br>
+    <br>
+    id: <strong>{{item.id}}</strong> <br>
+    Наименование: <strong>{{item.name}}</strong> <br>
+    {% if item.quantity %}
+        Количество: <strong>{{item.quantity}}</strong> <br>
+    {% else %}
+        Товар отсутствует <br>
+    {% endif %}
+    <a href = "/items">Назад к списку товаров</a>
+</body>
+</html>

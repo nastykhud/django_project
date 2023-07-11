@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+</head>
+<body>
+    <a href = "/"> Главная </a> - <a href = "/items"> Список товаров </a> <br>
+    <br>
+    <h2>Список товаров</h2>
+    <ol>
+        {% for i in items%}
+        <li> <a href = "item/{{ i.id }}">{{ i.name }}</a></li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+#Глобальные переменные
 user_f = 'Худякова'
 user_i = 'Анастасия'
 user_o = 'Дмитриевна'
@@ -15,22 +16,17 @@ items = [
    {"id": 8, "name": "Кепка" ,"quantity":124},
 ]
 
-#Домашняя страница
+#Главная страница
 def home(request):
     user_fio = user_f + ' ' + user_i[0] + '.' + user_o[0] + '.'
-    text = f"""<h1>"Изучаем django"</h1>
-            <strong>Автор</strong>: <i>{user_fio}</i>"""
-    return HttpResponse(text)
+    context = {'key1': user_fio}
+    return render(request, "main_page.html", context)
 
 #О проекте
 def about(request):
-    text = f""" Имя: <strong>{user_i}</strong> <br>
-    Отчество: <strong>{user_o}</strong> <br>
-    Фамилия: <strong>{user_f}</strong> <br>
-    телефон: <strong>{user_t}</strong> <br>
-    email: <strong>{user_e}</strong>
-    """
-    return HttpResponse(text)
+    context = {'name': user_i, 'midname': user_o, 'surname': user_f,
+                'phone': user_t, 'mail': user_e}
+    return render(request, "about_page.html", context)
 
 #Страница товара
 def item_info(request, num):
@@ -41,21 +37,14 @@ def item_info(request, num):
         ids.append(i['id'])
 
     if (num in ids): #если нужный id в списке
-        text = f"""id: <strong>{num}</strong> <br>
-        Наименование: <strong>{items[ids.index(num)]['name']}</strong> <br>
-        Количество: <strong>{items[ids.index(num)]['quantity']}</strong> <br>"""
+        context = {'item': items[ids.index(num)]}
+        return render(request, "show_page.html", context)
+
     else: #если нужный id не в списке
-        text = f"""Товар с id = {num} не найден <br>"""
-    
-    #Гиперссылка на список товаров
-    text += """<a href = "/items">Назад к списку товаров</a>"""
-    
-    return HttpResponse(text)
+        context = {'id': num}
+        return render(request, "show_none_page.html", context)
 
 #Список товаров
 def items_info(request):
-    text = """<h2>Список товаров</h2><ol>"""
-    for i in items:
-        text += f"""<li><a href = "item/{i['id']}">{i['name']}</a></li>"""
-    text += """</ol>"""
-    return HttpResponse(text)
+    context = {"items": items}
+    return render(request, "list_page.html", context)

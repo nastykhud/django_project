@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>О проекте</title>
-</head>
-<body>
-    <a href = "/"> Главная </a> - <a href = "/about"> О проекте </a> <br>
-    <br>
-    Имя: <strong>{{name}}</strong> <br>
-    Отчество: <strong>{{midname}}</strong> <br>
-    Фамилия: <strong>{{surname}}</strong> <br>
-    телефон: <strong>{{phone}}</strong> <br>
-    email: <strong>{{mail}}</strong>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}  
+<title>О проекте</title> 
+{% endblock %}
+    
+{% block content %}
+<a href = "{% url 'home' %}"> Главная </a> - <a href = "{% url 'about' %}"> О проекте </a> <br>
+<br>
+Имя: <strong>{{name}}</strong> <br>
+Отчество: <strong>{{midname}}</strong> <br>
+Фамилия: <strong>{{surname}}</strong> <br>
+телефон: <strong>{{phone}}</strong> <br>
+email: <strong>{{mail}}</strong>
+{% endblock %}

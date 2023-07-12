@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карточка товара</title>
-</head>
-<body>
-    <a href = "/"> Главная </a> - <a href = "/items"> Список товаров </a> - <a href = "/item/{{ id }}">{{ id }}</a> <br>
-    <br>
-    Товар с id = {{id}} не найден <br>
-    <a href = "/items">Назад к списку товаров</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}  
+<title>Карточка товара</title> 
+{% endblock %}
+    
+{% block content %}
+<a href = "{% url 'home' %}"> Главная </a> - <a href = "{% url 'items-list' %}"> Список товаров </a> - <a href = "{% url 'item-detail' id %}">{{ id }}</a> <br>
+<br>
+Товар с id = {{id}} не найден <br>
+<a href = "/items">Назад к списку товаров</a>
+{% endblock %}

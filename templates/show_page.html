@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Карточка товара</title>
+{% extends 'base.html' %}
+
+{% block title %}  
+<title>Карточка товара</title> 
+{% endblock %}
     
-</head>
-<body>
-    <a href = "/"> Главная </a> - <a href = "/items"> Список товаров </a> - <a href = "/item/{{ item.id }}">{{ item.id }}</a> <br>
-    <br>
-    id: <strong>{{item.id}}</strong> <br>
-    Наименование: <strong>{{item.name}}</strong> <br>
-    Бренд: <strong>{{item.brand}}</strong> <br>
-    {% if item.count %}
-        Количество: <strong>{{item.count}}</strong> <br>
-    {% else %}
-        Товар отсутствует <br>
-    {% endif %}
-    <a href = "/items">Назад к списку товаров</a>
-</body>
-</html>
+{% block content %}
+<a href = "{% url 'home' %}"> Главная </a> - <a href = "{% url 'items-list' %}"> Список товаров </a> - <a href = "{% url 'item-detail' item.id %}">{{ item.id }}</a> <br>
+<br>
+id: <strong>{{item.id}}</strong> <br>
+Наименование: <strong>{{item.name}}</strong> <br>
+Бренд: <strong>{{item.brand}}</strong> <br>
+{% if item.count %}
+    Количество: <strong>{{item.count}}</strong> <br>
+{% else %}
+    Товара нет на складе <br>
+{% endif %}
+<a href = "/items">Назад к списку товаров</a>
+{% endblock %}
